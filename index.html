@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Mohamad Luthfi Armansyah</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. BASE & RESET */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: #060b13; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 0;
+            font-family: 'Lato', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* GAMBAR BACKGROUND DI BELAKANG PROFILE */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background-image: linear-gradient(rgba(6, 11, 19, 0.75), rgba(6, 11, 19, 0.75)), url("backround picture.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            z-index: -2;
+        }
+
+        /* Garis Grid Blueprint Tipis untuk Estetika Teknik */
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+
+        /* 2. SLIDE CONTAINER */
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(5, 11, 20, 0.95) 100%); 
+            border: 2px solid rgba(59, 130, 246, 0.3); 
+            border-radius: 16px;
+            box-shadow: 0 0 50px rgba(59, 130, 246, 0.25);
+            position: relative;
+            display: none; 
+            overflow: hidden;
+            padding: 60px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .slide-container.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* 3. TYPOGRAPHY & TEXT COLORS */
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; color: #f8fafc; }
+        h1 { font-size: 54px; line-height: 1.1; margin-bottom: 10px; font-weight: 700; }
+        .slide-title { font-size: 40px; margin-bottom: 40px; border-left: 8px solid #3b82f6; padding-left: 20px; }
+        p { font-size: 18px; line-height: 1.6; color: #cbd5e1; }
+
+        /* 4. SLIDE 1: HOME */
+        #slide1 { text-align: center; justify-content: center; align-items: center; }
+        
+        /* BINGKAI FOTO PROFIL */
+        .hero-img { 
+            width: 220px; 
+            height: 220px; 
+            border-radius: 12px; 
+            object-fit: cover; 
+            border: 4px solid #3b82f6; 
+            padding: 6px;
+            background-color: rgba(59, 130, 246, 0.1);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.4); 
+            margin-bottom: 20px; 
+        }
+        
+        /* CONTAINER LOGO DIATAS ICON IC */
+        .home-project-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .home-project-logos img {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+
+        .btn-start {
+            margin-top: 35px;
+            padding: 15px 40px;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+        }
+        .btn-start:hover { background-color: #2563eb; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6); }
+
+        /* 5. SLIDE 2: MAIN MENU HUB */
+        .menu-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; margin-top: 20px; flex-grow: 1; align-items: center; }
+        .menu-card {
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            border-radius: 20px;
+            padding: 25px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            height: 340px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .menu-card:hover { 
+            border-color: #60a5fa; 
+            transform: translateY(-8px); 
+            background: rgba(59, 130, 246, 0.15); 
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        .menu-card i { font-size: 45px; color: #3b82f6; margin-bottom: 20px; }
+        .menu-card h3 { font-size: 22px; margin-bottom: 10px; }
+        .menu-card p { font-size: 13px; color: #94a3b8; line-height: 1.4; }
+
+        /* 6. CONTENT LAYOUT */
+        .content-area { display: flex; gap: 50px; flex-grow: 1; overflow-y: auto; padding-right: 10px; }
+        .left-col { flex: 1.2; }
+        .right-col { flex: 0.8; background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 20px; padding: 40px; height: fit-content; }
+
+        /* 7. TABLES */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; background: rgba(255, 255, 255, 0.01); border-radius: 8px; overflow: hidden; }
+        th { text-align: left; padding: 18px; background: #1e3a8a; color: #f8fafc; font-weight: 600; border-bottom: 2px solid #3b82f6; }
+        td { padding: 18px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-size: 16px; color: #cbd5e1; vertical-align: middle; }
+        tr:hover { background: rgba(59, 130, 246, 0.05); }
+        
+        /* CONTAINER LOGO DI DALAM TABEL */
+        .institution-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .institution-logo {
+            height: 35px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* 8. BACK BUTTON */
+        .back-btn {
+            position: absolute;
+            bottom: 40px;
+            right: 60px;
+            padding: 12px 28px;
+            background: #1e293b;
+            color: #f8fafc;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.2s;
+            z-index: 10;
+        }
+        .back-btn:hover { background: #334155; color: white; box-shadow: 0 0 10px rgba(59, 130, 246, 0.4); }
+
+        /* 9. SKILLS TAGS */
+        .skill-tag {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 6px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* 10. LIST CARDS */
+        .list-card {
+            background: rgba(255, 255, 255, 0.01); 
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 25px; 
+            border-radius: 12px; 
+            margin-bottom: 20px;
+        }
+        .list-card h3 { color: #60a5fa; margin-bottom: 5px; }
+        .list-card span { color: #94a3b8; font-size: 14px; display: block; margin-bottom: 10px; }
+        
+        /* EXPERIENCE SLIDE LOGO */
+        .experience-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 4px;
+        }
+        .experience-logo {
+            height: 30px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+        
+        /* PROJECT GRID & CARDS */
+        .project-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 20px; 
+            width: 100%; 
+            overflow-y: auto; 
+            max-height: 480px; 
+            padding-right: 8px; 
+        }
+
+        .project-card-v2 {
+            background: #111827;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+        .project-card-v2:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* PERBAIKAN: Mengganti tinggi kaku menjadi rasio aspek flex proporsional */
+        .project-card-image {
+            width: 100%;
+            height: 180px; /* Ukuran tinggi kontainer gambar yang ideal */
+            overflow: hidden;
+            background-color: #090d16;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+        }
+        .project-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Mengisi penuh area kontainer tanpa menciutkan gambar */
+            object-position: center;
+            transition: transform 0.3s ease;
+        }
+        .project-card-v2:hover .project-card-image img {
+            transform: scale(1.04);
+        }
+        .project-card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .project-card-body h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #60a5fa;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+        .project-card-body .project-meta {
+            color: #94a3b8;
+            font-size: 13px;
+            display: block;
+            margin-bottom: 12px;
+        }
+        .project-card-body p {
+            font-size: 14px;
+            color: #cbd5e1;
+            text-align: justify;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container active" id="slide1">
+        <img src="profile picture.jpeg" alt="Mohamad Luthfi Armansyah" class="hero-img">
+        <h1>Mohamad Luthfi Armansyah</h1>
+        <p style="color: #60a5fa; font-weight: 600; letter-spacing: 1px;"><i class="fa-solid fa-microchip"></i> ELECTRONIC ENGINEERING</p>
+        <button class="btn-start" onclick="navigateTo('slide2')">Explore Portfolio<i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></button>
+    </div>
+
+    <div class="slide-container" id="slide2">
+        <h2 class="slide-title">Main Menu</h2>
+        <div class="menu-grid">
+            <div class="menu-card" onclick="navigateTo('slide3')">
+                <i class="fa-solid fa-user-tie"></i>
+                <h3>Profile</h3>
+                <p>Learn more about my professional background and skills.</p>
+            </div>
+            <div class="menu-card" onclick="navigateTo('slide4')">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <h3>Education</h3>
+                <p>Details regarding my academic timeline and coursework.</p>
+            </div>
+            <div class="menu-card" onclick="navigateTo('slide5')">
+                <i class="fa-solid fa-briefcase"></i>
+                <h3>Experience</h3>
+                <p>Explore my journey in electronics engineering, automation, and industrial systems.</p>
+            </div>
+            <div class="menu-card" onclick="navigateTo('slide7')">
+                <i class="fa-solid fa-diagram-project"></i>
+                <h3>Projects</h3>
+                <p>Academic Projects in Electronics and Automation.</p>
+            </div>
+            <div class="menu-card" onclick="navigateTo('slide6')">
+                <i class="fa-solid fa-certificate"></i>
+                <h3>Certifications</h3>
+                <p>View my professional credentials, scores, and training history.</p>
+            </div>
+        </div>
+        <button class="back-btn" onclick="navigateTo('slide1')"><i class="fa-solid fa-house"></i> Home</button>
+    </div>
+
+    <div class="slide-container" id="slide3">
+        <h2 class="slide-title">About Me</h2>
+        <div class="content-area">
+            <div class="left-col">
+                <p style="text-align: justify; color: #cbd5e1;">
+                    I am a fresh graduate of the Associate Degree (D3) Program in Electronics Engineering from Politeknik Negeri Semarang with a strong foundation in industrial electronics, control systems, and electrical instrumentation. Through academic projects, laboratory activities, and industrial training, I have gained knowledge of PLC, DCS, and basic industrial automation systems, as well as experience in preventive maintenance and basic troubleshooting of electrical and instrumentation equipment. I am highly motivated to apply my technical knowledge, continuously develop my skills, and contribute to industrial automation, control systems, and power plant operations while learning from experienced professionals and adapting to new challenges.
+                </p>
+                <div style="margin-top: 35px;">
+                    <h3>Contact & Socials</h3>
+                    <p style="margin-top: 10px; font-size: 16px;"><i class="fa-solid fa-envelope" style="color: #60a5fa; width: 25px;"></i> mluthfiarmansyah05@gmail.com</p>
+                    <p style="margin-top: 5px; font-size: 16px;"><i class="fa-solid fa-phone" style="color: #60a5fa; width: 25px;"></i> +62 858-6997-7516</p>
+                    <p style="margin-top: 5px; font-size: 16px;"><i class="fa-solid fa-location-dot" style="color: #60a5fa; width: 25px;"></i> East Semarang, Indonesia</p>
+                    <p style="margin-top: 5px; font-size: 16px;"><i class="fa-brands fa-linkedin" style="color: #60a5fa; width: 25px;"></i> mohamad-luthfi-armansyah</p>
+                </div>
+            </div>
+            <div class="right-col">
+                <h3>Skills</h3>
+                <div style="margin-top: 15px;">
+                    <span class="skill-tag"><i class="fa-solid fa-gears"></i> PLC Programming</span>
+                    <span class="skill-tag"><i class="fa-solid fa-wifi"></i> IoT Development</span>
+                    <span class="skill-tag"><i class="fa-solid fa-diagram-project"></i> P&ID Interpretation</span>
+                    <span class="skill-tag"><i class="fa-solid fa-microchip"></i> Microcontroller Systems</span>
+                    <span class="skill-tag"><i class="fa-solid fa-gauge"></i> Instrumentation Systems</span>
+                    <span class="skill-tag"><i class="fa-solid fa-users"></i> Teamwork & Collaboration</span>
+                    <span class="skill-tag"><i class="fa-solid fa-brain"></i> Problem Solving</span>
+                    <span class="skill-tag"><i class="fa-solid fa-bolt"></i> Adaptability</span>
+                </div>
+                <h3 style="margin-top: 25px;">Languages</h3>
+                <div style="margin-top: 10px;">
+                    <p style="font-size: 15px; color: #cbd5e1;"><i class="fa-solid fa-circle-check" style="color: #60a5fa; margin-right: 8px;"></i> Indonesian - Fluent</p>
+                    <p style="font-size: 15px; color: #cbd5e1; margin-top: 5px;"><i class="fa-solid fa-circle-check" style="color: #60a5fa; margin-right: 8px;"></i> English - Basic / Intermediate (TEEPS Score: 600)</p>
+                </div>
+            </div>
+        </div>
+        <button class="back-btn" onclick="navigateTo('slide2')"><i class="fa-solid fa-chevron-left"></i> Back</button>
+    </div>
+
+    <div class="slide-container" id="slide4">
+        <h2 class="slide-title">Education History</h2>
+        <div class="content-area">
+            <div style="width: 100%;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Educational Institution</th>
+                            <th>Major / Program</th>
+                            <th>Academic Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2023 - 2026</td>
+                            <td>
+                                <div class="institution-container">
+                                    <img src="Logo polines.png" alt="Logo Polines" class="institution-logo">
+                                    <span>Semarang State Polytechnic</span>
+                                </div>
+                            </td>
+                            <td>Diploma III in Electronics Engineering</td>
+                            <td>GPA: 3.50 / 4.00 <br><small>Relevant Coursework: Industrial Automation, Instrumentation Systems, PLC Programming, Microcontroller Systems, Sensors and Transducers, and Internet of Things (IoT).</small></td>
+                        </tr>
+                        <tr>
+                            <td>2020 - 2023</td>
+                            <td>
+                                <div class="institution-container">
+                                    <img src="gambar sekola.png" alt="Logo SMA 2 Cilacap" class="institution-logo">
+                                    <span>SMA Negeri 2 Cilacap</span>
+                                </div>
+                            </td>
+                            <td>Science Major (IPA)</td>
+                            <td>Graduated</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <button class="back-btn" onclick="navigateTo('slide2')"><i class="fa-solid fa-chevron-left"></i> Back</button>
+    </div>
+
+    <div class="slide-container" id="slide5">
+        <h2 class="slide-title">Professional Experience</h2>
+        <div class="content-area">
+            <div style="width: 100%;">
+                <div class="list-card">
+                    <h3>Instrument Technician Intern</h3>
+                    <div class="experience-header">
+                        <img src="PLN IP.png" alt="Logo PT PLN Indonesia Power" class="experience-logo">
+                        <span>PT PLN Indonesia Power (UBP Adipala) | Jan 2026</span>
+                    </div>
+                    <p style="font-size: 16px; margin-top: 8px; text-align: justify; color: #cbd5e1; margin-bottom: 12px;">
+                        PT PLN Indonesia Power UBP Central Java 2 Adipala is a power generation unit under PT PLN Indonesia Power that operates a coal-fired steam power plant to support reliable electricity supply for the Java–Bali system.
+                    </p>
+                    <ul style="color: #cbd5e1; line-height: 1.6; padding-left: 20px; margin: 0; font-size: 15px; text-align: justify;">
+                        <li style="margin-bottom: 6px;">Executed preventive and corrective maintenance on instrumentation systems across Boiler, Turbine, Generator, Mill, and Balance of Plant (BOP) areas.</li>
+                        <li style="margin-bottom: 6px;">Performed inspection, cleaning, and basic maintenance of pressure, flow, and temperature instruments, including transmitters, switches, and control panels.</li>
+                        <li style="margin-bottom: 6px;">Assisted in instrument calibration activities (pressure transmitters and pressure switches) and supported maintenance of auxiliary systems such as CCCW, CWP, WWTP, and Chlorine Plant.</li>
+                        <li style="margin-bottom: 0;">Observed and supported DCS operations, EWS Server/Room activities, and applied power plant safety standards (K3 & PPE).</li>
+                    </ul>
+                </div>
+                
+                <div class="list-card">
+                    <h3>Maintenance Electrician Intern</h3>
+                    <div class="experience-header">
+                        <img src="solusi bangun indonesia.jpg" alt="Logo PT Solusi Bangun Indonesia" class="experience-logo">
+                        <span>PT Solusi Bangun Indonesia Tbk. Cilacap Plant | Oct 2025 - Dec 2025</span>
+                    </div>
+                    <p style="font-size: 16px; margin-top: 8px; text-align: justify; color: #cbd5e1; margin-bottom: 12px;">
+                        PT Solusi Bangun Indonesia Tbk is one of Indonesia’s leading cement producers, manufacturing cement, clinker, and ready-mix concrete to support national infrastructure and construction development.
+                    </p>
+                    <ul style="color: #cbd5e1; line-height: 1.6; padding-left: 20px; margin: 0; font-size: 15px; text-align: justify;">
+                        <li style="margin-bottom: 6px;">Supported preventive maintenance routines on 10+ electrical and instrumentation assets, including weight feeders, VSDs, motors, chillers, and bucket elevators across Raw Mill, Reclaimer, and utility areas.</li>
+                        <li style="margin-bottom: 6px;">Assisted in calibration and troubleshooting of process transmitters and sensors (e.g., flow/weight systems), contributing to stable material handling and process reliability.</li>
+                        <li style="margin-bottom: 6px;">Participated in maintenance and inspections of plant systems such as Electrostatic Precipitator (EP), Gas Conditioning Tower (GCT), Dustbin, and Lighting Protection System (LPS).</li>
+                        <li style="margin-bottom: 0;">Conducted field inspections and documentation during routine operations and site visits, consistently applying K3 safety standards and PPE compliance.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <button class="back-btn" onclick="navigateTo('slide2')"><i class="fa-solid fa-chevron-left"></i> Back</button>
+    </div>
+<div class="slide-container" id="slide7" style="height: 100% !important;">
+        <h2 class="slide-title">Featured Projects</h2>
+        
+        <!-- Memberikan scrollbar aktif khusus untuk area konten project -->
+        <div class="content-area" style="overflow-y: auto !important; max-height: 70vh !important; padding-right: 10px;">
+            <div class="project-grid" style="display: flex !important; flex-direction: column !important; gap: 25px !important;">
+                
+                <!-- KARTU PROYEK 1 -->
+                <div class="project-card-v2" style="display: flex !important; flex-direction: row !important; align-items: flex-start !important; height: auto !important; min-height: 320px !important; padding: 20px !important; gap: 25px !important; text-align: left !important;">
+                    <!-- Sisi Kiri: Gambar Vertikal Full -->
+                    <div style="flex: 0 0 200px !important; width: 200px !important;">
+                        <img src="kotak amal cerdas.jpeg" alt="Smart Donation Box" style="width: 100% !important; height: auto !important; max-height: 280px !important; object-fit: contain !important; border-radius: 8px;">
+                    </div>
+                    <!-- Sisi Kanan: Teks Deskripsi -->
+                    <div class="project-card-body" style="flex: 1 !important; padding: 0 !important;">
+                        <h3 style="margin-top: 0 !important; color: #fff;">Development of a Smart Donation Box Using IoT Technology</h3>
+                        <span class="project-meta" style="display: block; margin-bottom: 12px;">IoT| 2025</span>
+                        <p style="margin: 0 !important; line-height: 1.6 !important;">
+                            An IoT-based Smart Donation Box developed using an ESP32 microcontroller and TCS3200 color sensor to automatically identify and record donation amounts. The system transmits donation data in real-time through wireless connectivity and provides instant notifications via Telegram, enabling transparent, efficient, and remote monitoring of charity collection activities.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- KARTU PROYEK 2 -->
+                <div class="project-card-v2" style="display: flex !important; flex-direction: row !important; align-items: flex-start !important; height: auto !important; min-height: 320px !important; padding: 20px !important; gap: 25px !important; text-align: left !important;">
+                    <div style="flex: 0 0 200px !important; width: 200px !important;">
+                        <img src="line follower.jpeg" alt="Line Follower Robot" style="width: 100% !important; height: auto !important; max-height: 280px !important; object-fit: contain !important; border-radius: 8px;">
+                    </div>
+                    <div class="project-card-body" style="flex: 1 !important; padding: 0 !important;">
+                        <h3 style="margin-top: 0 !important; color: #fff;">Line Follower Robot</h3>
+                        <span class="project-meta" style="display: block; margin-bottom: 12px;">Robotics & Autonomous Systems | 2024</span>
+                        <p style="margin: 0 !important; line-height: 1.6 !important;">
+                            Designed and developed an autonomous Line Follower Robot based on the ESP32 microcontroller and infrared sensor array. The robot was programmed to detect and follow a predefined path by processing sensor data in real-time and controlling DC motors accordingly. This project strengthened my skills in embedded systems, sensor integration, motor control, and autonomous robotic system development.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- KARTU PROYEK 3 -->
+                <div class="project-card-v2" style="display: flex !important; flex-direction: row !important; align-items: flex-start !important; height: auto !important; min-height: 320px !important; padding: 20px !important; gap: 25px !important; text-align: left !important;">
+                    <div style="flex: 0 0 200px !important; width: 200px !important;">
+                        <img src="shelter.jpeg" alt="Automatic Temperature Control" style="width: 100% !important; height: auto !important; max-height: 280px !important; object-fit: contain !important; border-radius: 8px;">
+                    </div>
+                    <div class="project-card-body" style="flex: 1 !important; padding: 0 !important;">
+                        <h3 style="margin-top: 0 !important; color: #fff;">Design and Development of an Automatic Temperature Control System for Mount Ungaran Shelter</h3>
+                        <span class="project-meta" style="display: block; margin-bottom: 12px;">KBK| 2025</span>
+                        <p style="margin: 0 !important; line-height: 1.6 !important;">
+                            Developed an Arduino Uno-based automatic temperature control system using DHT11 sensors, LCD display, and heating elements to maintain safe shelter temperatures through real-time monitoring and automated control.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <button class="back-btn" onclick="navigateTo('slide2')"><i class="fa-solid fa-chevron-left"></i> Back</button>
+    </div>
+    <div class="slide-container" id="slide6">
+        <h2 class="slide-title">Certifications & Training</h2>
+        <div class="content-area">
+            <div class="project-grid">
+                <div class="list-card">
+                    <h3>Competency Certificate (BNSP)</h3>
+                    <span>LSP Politeknik Negeri Semarang</span>
+                    <p style="font-size: 15px; margin-top: 8px; color: #cbd5e1;">National professional engineering validation issued by the Indonesian National Board for Professional Certification through the campus testing center.</p>
+                </div>
+                <div class="list-card">
+                    <h3>TOEIC Certificate</h3>
+                    <span>TEEPS Score: 600</span>
+                    <p style="font-size: 15px; margin-top: 8px; color: #cbd5e1;">International english proficiency index metric tracking communication efficiency within standardized commercial engineering environments.</p>
+                </div>
+                <div class="list-card">
+                    <h3>Industrial Training Completion</h3>
+                    <span>PT PLN Indonesia Power (UBP Adipala)</span>
+                    <p style="font-size: 15px; margin-top: 8px; color: #cbd5e1;">Verified internship certificate recognizing specialized field systems training completed at the generation asset branch.</p>
+                </div>
+                <div class="list-card">
+                    <h3>Industrial Training Completion</h3>
+                    <span>PT Solusi Bangun Indonesia Tbk.</span>
+                    <p style="font-size: 15px; margin-top: 8px; color: #cbd5e1;">Verified technical internship completion record focusing on corporate electrical engineering plant frameworks.</p>
+                </div>
+            </div>
+        </div>
+        <button class="back-btn" onclick="navigateTo('slide2')"><i class="fa-solid fa-chevron-left"></i> Back</button>
+    </div>
+
+    <script>
+        function navigateTo(slideId) {
+            const slides = document.querySelectorAll('.slide-container');
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            const targetSlide = document.getElementById(slideId);
+            if(targetSlide) {
+                targetSlide.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
